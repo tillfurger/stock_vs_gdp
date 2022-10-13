@@ -21,9 +21,10 @@ def get_stock_data():
     """Get SP500 data from the DB."""
     file_name = f'{DATA_PATH}/raw/stock_data.json'
     resp = json.load(open(file_name))
-    data = pd.DataFrame(resp['Time Series (Daily)']).T.reset_index()
+    data = pd.DataFrame(resp['Monthly Adjusted Time Series']).T.reset_index()
 
-    data.columns = ['date', 'open', 'high', 'low', 'close', 'volume']
+    data.columns = ['date', 'open', 'high', 'low', 'close', 'adjusted_close', 'volume', 'dividend_amount']
     data['date'] = data['date'].apply(pd.to_datetime)
+    data.loc[:, data.columns != 'date'] = data.loc[:, data.columns != 'date'].astype('float')
 
     return data
