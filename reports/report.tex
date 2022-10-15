@@ -1,6 +1,3 @@
-%% Full length research paper template
-%% Created by Simon Hengchen and Nilo Pedrazzini for the Journal of Open Humanities Data (https://openhumanitiesdata.metajnl.com)
-
 \documentclass{article}
 \usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
@@ -9,20 +6,20 @@
 \usepackage{johd}
 \usepackage{natbib}
 
-\title{SP500 vs. US GDP}
+\title{SPY vs. US GDP}
 
 \author{
-    Till Furger\thanks{Department of Business Administration and Wineus AG, University of Zurich, Plattenstrasse 14, 8032 Zurich, Switzerland, \tt{till.furger@uzh.ch}} \rule{0.5in}{0pt}
     
     Martina Stieger\thanks{University of Zurich, Plattenstrasse 14, 8032 Zurich, Switzerland, \tt{martina.stieger@uzh.ch}} \rule{0.5in}{0pt}
-    
+
+    Flurina Schneider\thanks{University of Zurich, Plattenstrasse 14, 8032 Zurich, Switzerland, \tt{flurina.schneider@uzh.ch}} \rule{0.5in}{0pt}
+        
     Luis Escobar\thanks{University of Zurich, Plattenstrasse 14, 8032 Zurich, Switzerland, \tt{luis.escobar@uzh.ch}} \rule{0.5in}{0pt}
     
-    Flurina Schneider\thanks{University of Zurich, Plattenstrasse 14, 8032 Zurich, Switzerland, \tt{flurina.schneider@uzh.ch}}\\
+    Till Furger\thanks{Department of Business Administration and Wineus AG, University of Zurich, Plattenstrasse 14, 8032 Zurich, Switzerland, \tt{till.furger@uzh.ch}}\\
     
     \small \date{\today}
 }
-
 
 
 \begin{document}
@@ -61,17 +58,43 @@ Describe the context and motivation of your paper.
 	\caption{Histograms}
 \end{figure}
 
+\begin{figure}[htbp]
+	\centering
+	\includesvg[width=\textwidth]{figures/boxplots}
+	\caption{Boxplots}
+\end{figure}
+
+
+
 
 \begin{table}[H]
 	\input{tables/summary_statistics.tex}
+	\caption{Summary Statistics}
 \end{table}
-
-
-
-\section{Findings}
 
 \section{Method}
 Describe the methods used in the study.
+
+\section{Findings}
+
+\begin{figure}[htbp]
+	\centering
+	\includesvg[width=\textwidth]{figures/regression}
+	\caption{}
+\end{figure}
+
+\begin{figure}[htbp]
+	\centering
+	\includesvg[width=\textwidth]{figures/growth_starting_at_100}
+	\caption{}
+\end{figure}
+
+\begin{figure}[htbp]
+	\centering
+	\includesvg[width=\textwidth]{figures/average_growth}
+	\caption{}
+\end{figure}
+
 
 \section{Results and discussion}
 Describe and discuss the results of the study.
