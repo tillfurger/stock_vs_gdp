@@ -57,49 +57,18 @@ Describe the context and motivation of your paper.
 
 \begin{figure}[htbp]
 	\centering
-	\includesvg{boxplots}
-	\caption{svg image}
+	\includesvg[width=\textwidth]{figures/histograms}
+	\caption{Histograms}
 \end{figure}
 
 
-\section{Findings}
-To add bullet points:
-
-\begin{itemize}
-    \item Some point
-    \item Another point
-\end{itemize}
-
-\noindent Or numbered points:
-
-\begin{itemize}
-    \item[1.] Some numbered point
-    \item[2.] Another numbered point
-\end{itemize}
-
-\noindent This is an example of footnote\footnote{This is a footnote}. \\
-
-\noindent This is a simple table:
-
 \begin{table}[H]
-\centering
-\label{tab1} % Label your table accordingly
-\caption{A caption.}
-\begin{tabular}{cccc}
-\hline
-1 & 2 & 3 & 4 \\
-\hline
-a & b & c & d\\
-e & f & g & h\\
-\hline
-\end{tabular}
+	\input{tables/summary_statistics.tex}
 \end{table}
 
-\noindent Please refer to your table using: Table \ref{tab1}.\\
 
-\noindent To add a figure, upload the figure into the \texttt{images} folder, and then embed it:
 
-\noindent Please refer to your figures as: Figure \ref{fig1}, Figure \ref{fig2}, etc.
+\section{Findings}
 
 \section{Method}
 Describe the methods used in the study.
