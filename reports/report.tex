@@ -1,0 +1,116 @@
+%% Full length research paper template
+%% Created by Simon Hengchen and Nilo Pedrazzini for the Journal of Open Humanities Data (https://openhumanitiesdata.metajnl.com)
+
+\documentclass{article}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{svg}
+\usepackage{amsmath}
+\usepackage{johd}
+\usepackage{natbib}
+
+\title{SP500 vs. US GDP}
+
+\author{
+    Till Furger\thanks{Department of Business Administration and Wineus AG, University of Zurich, Plattenstrasse 14, 8032 Zurich, Switzerland, \tt{till.furger@uzh.ch}} \rule{0.5in}{0pt}
+    
+    Martina Stieger\thanks{University of Zurich, Plattenstrasse 14, 8032 Zurich, Switzerland, \tt{martina.stieger@uzh.ch}} \rule{0.5in}{0pt}
+    
+    Luis Escobar\thanks{University of Zurich, Plattenstrasse 14, 8032 Zurich, Switzerland, \tt{luis.escobar@uzh.ch}} \rule{0.5in}{0pt}
+    
+    Flurina Schneider\thanks{University of Zurich, Plattenstrasse 14, 8032 Zurich, Switzerland, \tt{flurina.schneider@uzh.ch}}\\
+    
+    \small \date{\today}
+}
+
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TITLE PAGE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\maketitle
+
+\begin{abstract} 
+\noindent A short (up to 250 words) summary of the main contributions of the paper and the context of the research. Full length papers discuss and illustrate methods, challenges, and limitations in the creation, collection, management, access, processing, or analysis of data in humanities research, including standards and formats. This template provides a general outline for full length papers and authors can adapt the headings and include subheadings as they find appropriate.
+\end{abstract}
+
+\hfill
+
+\noindent\jel{G1, G11, G14, G17}\\
+\noindent\keywords{keyword 1; keyword 2; lower case except names, max 6 }\\
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BEGIN OF PAPER %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tableofcontents
+
+\section{Introduction}
+Describe the context and motivation of your paper.
+
+\section{Summary statistics}
+
+\begin{figure}[htbp]
+	\centering
+	\includesvg{boxplots}
+	\caption{svg image}
+\end{figure}
+
+
+\section{Findings}
+To add bullet points:
+
+\begin{itemize}
+    \item Some point
+    \item Another point
+\end{itemize}
+
+\noindent Or numbered points:
+
+\begin{itemize}
+    \item[1.] Some numbered point
+    \item[2.] Another numbered point
+\end{itemize}
+
+\noindent This is an example of footnote\footnote{This is a footnote}. \\
+
+\noindent This is a simple table:
+
+\begin{table}[H]
+\centering
+\label{tab1} % Label your table accordingly
+\caption{A caption.}
+\begin{tabular}{cccc}
+\hline
+1 & 2 & 3 & 4 \\
+\hline
+a & b & c & d\\
+e & f & g & h\\
+\hline
+\end{tabular}
+\end{table}
+
+\noindent Please refer to your table using: Table \ref{tab1}.\\
+
+\noindent To add a figure, upload the figure into the \texttt{images} folder, and then embed it:
+
+\noindent Please refer to your figures as: Figure \ref{fig1}, Figure \ref{fig2}, etc.
+
+\section{Method}
+Describe the methods used in the study.
+
+\section{Results and discussion}
+Describe and discuss the results of the study.
+
+
+\theendnotes
+
+\bibliography{citation/bibliography.bib}
+\bibliographystyle{apalike}
+
+\end{document}
