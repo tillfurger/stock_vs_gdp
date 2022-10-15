@@ -86,3 +86,12 @@ target/
 
 # Mypy cache
 .mypy_cache/
+
+# Unnecessary tex files
+*.aux
+*.bbl
+*.blg
+*.ent
+*.log
+*.synctex.gz
+*.toc
