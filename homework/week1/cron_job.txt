@@ -1,0 +1,2 @@
+crontab -e
+0 17 1-31/2 * *  /homework/week1/runner.sh

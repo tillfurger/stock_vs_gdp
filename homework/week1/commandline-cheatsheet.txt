@@ -1,0 +1,11 @@
+mkdir temp/
+cd temp
+echo "hello world" > hello.txt
+dir
+tasklist
+taskkill /PID 666 /F
+echo %PATH% > path.txt
+cd . dir "hello.txt" /s
+dir /s /b /a:-D
+where echo
+man ps | findstr /i "Select all processes"
