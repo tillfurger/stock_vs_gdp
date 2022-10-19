@@ -51,7 +51,9 @@ Generation of tables which can be directly imported to latex
 Connect Overleaf to Github
 
 Use Plotly to create interactive graphs in order to do robustness checks
+
 Analysis and interpretation of findings
+
 Provision of context (international markets)
 
 Data 
@@ -66,8 +68,11 @@ Resources
 ------------
 
 Papers
+
 US data: XXX
+
 Emerging market data: XXX
+
 [World Bank]: (https://data.worldbank.org/indicator/CM.MKT.LCAP.GD.ZS)
 
 
