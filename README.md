@@ -3,6 +3,12 @@ final_project
 
 Does the stock market capitalization grow faster than the GDP?
 
+Intro
+------------
+
+Using data from xxx for the United States, middle inc country, low income country, we are examining whether stock market capitalization grows faster than the GDP. For that purpose, we are setting...
+
+
 Project Organization
 ------------
 
@@ -29,6 +35,39 @@ Project Organization
     │  
     │
     └── requirements.txt            <- Requirements necesseary for this project
+
+
+Description of steps (necessary?/ how?)
+------------
+
+Preparation of  a folder structure, using the cookiecutter Data Science template
+
+Import of data, both raw and processed
+
+Generation of tables which can be directly imported to latex 
+
+Connect Overleaf to Github
+
+Use Plotly to create interactive graphs in order to do robustness checks
+Analysis and interpretation of findings
+Provision of context (international markets)
+
+Data (incl. links)
+------------
+
+Data is pulled from [Alpha Vantage]
+(www.alphavantage.co) 
+
+(More detailed info on data)
+
+Resources
+------------
+
+Papers
+US data: XXX
+Emerging market data: XXX
+[World Bank]: (https://data.worldbank.org/indicator/CM.MKT.LCAP.GD.ZS)
+
 
 
 --------
