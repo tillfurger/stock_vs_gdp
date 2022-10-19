@@ -6,7 +6,9 @@ Does the stock market capitalization grow faster than the GDP?
 Intro
 ------------
 
-Using data from xxx for the United States, middle inc country, low income country, we are examining whether stock market capitalization grows faster than the GDP. For that purpose, we are setting...
+Using data from Alpha Vantage for the United States,  we are examining whether stock market capitalization grows faster than the GDP. For that purpose, we are providing an analysis of the data through interactive graphs and tables, as well as an interpretation of our output.
+
+In a second step, we are comparing our analysis to the findings of selected papers, which focus on the situation in middle and low income countries. 
 
 
 Project Organization
@@ -27,14 +29,14 @@ Project Organization
     │   └── tables         <- Generated tables to be used in reporting as .tex
     │
     │
-    ├── src                <- Source code for use in this project.
-    │   ├──__init__.py    <- Makes src a Python module
+    ├── src                <- Source code for use in this project
+    │   ├──__init__.py     <- Makes src a Python module
     │   │
     │   ├── data           <- Scripts to download or generate data
     │       └── make_dataset.py
     │  
     │
-    └── requirements.txt            <- Requirements necesseary for this project
+    └── requirements.txt   <- Requirements necessary for this project
 
 
 Description of steps (necessary?/ how?)
@@ -52,13 +54,13 @@ Use Plotly to create interactive graphs in order to do robustness checks
 Analysis and interpretation of findings
 Provision of context (international markets)
 
-Data (incl. links)
+Data 
 ------------
 
 Data is pulled from [Alpha Vantage]
 (www.alphavantage.co) 
 
-(More detailed info on data)
+(More detailed info on data: raw& processed etc.)
 
 Resources
 ------------
