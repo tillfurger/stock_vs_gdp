@@ -1,14 +1,10 @@
-# Base image https://hub.docker.com/u/rocker/
-FROM rocker/r-base:latest
+FROM python:slim
 
-## create directories
-RUN mkdir -p /data
-RUN mkdir -p /code
-RUN mkdir -p /output
+WORKDIR /plot_home
 
-## copy files
-COPY /code/packages.R /code/packages.R
-COPY /code/plot_data.R /code/plot_data.R
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
 
-## install R-packages
-RUN Rscript /code/packages.R
+COPY . .
+
+CMD [ "python", "./plot.py" ]

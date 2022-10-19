@@ -1,0 +1,9 @@
+# The Dockerfile references a /plot_home directory, which should be inputed
+while running the docker image. For example, if the image is built as "plot_app",
+the image should be run using the -v flag as follows:
+
+docker run --rm -v `pwd`:/plot_home plot_app
+
+where pwd will be the result of the "pwd" command line command, so it is important
+that the docker run command is executed from the directory where the data/ subfolder
+and the plot.py file are stored.
