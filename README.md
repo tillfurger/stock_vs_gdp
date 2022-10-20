@@ -39,22 +39,22 @@ Project Organization
     └── requirements.txt   <- Requirements necessary for this project
 
 
-Description of steps (necessary?/ how?)
+Description of Steps 
 ------------
 
 - Preparation of  a folder structure, using the cookiecutter Data Science template
 
-Import of data, both raw and processed
+- Import of data, both raw and processed
 
-Generation of tables which can be directly imported to latex 
+- Generation of tables which can be directly imported to latex 
 
-Connect Overleaf to Github
+- Connect Overleaf to Github
 
-Use Plotly to create interactive graphs in order to do robustness checks
+- Use Plotly to create interactive graphs in order to do robustness checks
 
-Analysis and interpretation of findings
+- Analysis and interpretation of findings
 
-Provision of context (international markets)
+- Provision of context (international markets)
 
 Data 
 ------------
@@ -65,6 +65,10 @@ Data is pulled from [Alpha Vantage]
 Resources
 ------------
 
+Beware the Bubble? The US Stock Market Cap-to-GDP Ratio
+[CFA Institute] https://blogs.cfainstitute.org/investor/2021/02/02/beware-the-bubble-the-us-stock-market-cap-to-gdp-ratio/
+
+[MSCI]
 
 Why economic growth has been a mirage for emerging market investors
 [Schroders]: (https://www.schroders.com/en/ch/wealth-management/insights/markte/why-economic-growth-has-been-a-mirage-for-emerging-market-investors/)
@@ -74,10 +78,9 @@ Linkages between Market Capitalization and Economic Growth: The Case of Emerging
 Market Capitalization of Listed Domestic Companies (% of GDP)
 [World Bank]: (https://data.worldbank.org/indicator/CM.MKT.LCAP.GD.ZS)
 
-Beware the Bubble? The US Stock Market Cap-to-GDP Ratio
-[CFA Institute] https://blogs.cfainstitute.org/investor/2021/02/02/beware-the-bubble-the-us-stock-market-cap-to-gdp-ratio/
 
-[MSCI]
+
+
 
 --------
 
