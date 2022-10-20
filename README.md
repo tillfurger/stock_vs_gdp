@@ -1,4 +1,4 @@
-final_project
+Final Project: Stock Market Capitalization vs. GDP Growth
 ==============================
 
 Does the stock market capitalization grow faster than the GDP?
@@ -42,7 +42,7 @@ Project Organization
 Description of steps (necessary?/ how?)
 ------------
 
-Preparation of  a folder structure, using the cookiecutter Data Science template
+- Preparation of  a folder structure, using the cookiecutter Data Science template
 
 Import of data, both raw and processed
 
@@ -62,20 +62,22 @@ Data
 Data is pulled from [Alpha Vantage]
 (www.alphavantage.co) 
 
-(More detailed info on data: raw& processed etc.)
-
 Resources
 ------------
 
-Papers
 
-US data: XXX
+Why economic growth has been a mirage for emerging market investors
+[Schroders]: (https://www.schroders.com/en/ch/wealth-management/insights/markte/why-economic-growth-has-been-a-mirage-for-emerging-market-investors/)
 
-Emerging market data: XXX
+Linkages between Market Capitalization and Economic Growth: The Case of Emerging Markets
 
+Market Capitalization of Listed Domestic Companies (% of GDP)
 [World Bank]: (https://data.worldbank.org/indicator/CM.MKT.LCAP.GD.ZS)
 
+Beware the Bubble? The US Stock Market Cap-to-GDP Ratio
+[CFA Institute] https://blogs.cfainstitute.org/investor/2021/02/02/beware-the-bubble-the-us-stock-market-cap-to-gdp-ratio/
 
+[MSCI]
 
 --------
 
