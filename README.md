@@ -78,8 +78,9 @@ Linkages between Market Capitalization and Economic Growth: The Case of Emerging
 Market Capitalization of Listed Domestic Companies (% of GDP)
 [World Bank]: (https://data.worldbank.org/indicator/CM.MKT.LCAP.GD.ZS)
 
-
-
+Contributors
+------------
+Flurina Schneider, Till Furger, Luis Escobar Farfan, Martina Stieger
 
 
 --------
