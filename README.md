@@ -1,14 +1,12 @@
 Final Project: Stock Market Capitalization vs. GDP Growth
 ==============================
 
-Does the stock market capitalization grow faster than the GDP?
-
 Intro
 ------------
 
-Using data from Alpha Vantage for the United States,  we are examining whether stock market capitalization grows faster than the GDP. For that purpose, we are providing an analysis of the data through interactive graphs and tables, as well as an interpretation of our output.
+In this project, we are examining whether the stock market capitalization grows faster than the GDP, with a focus on developed countries. For that purpose, we use data from Alpha Vantage for the United States and provide an analysis of the data through interactive graphs and tables. We will also give a short interpretation of our findings.
 
-In a second step, we are comparing our analysis to the findings of selected papers, which focus on the situation in middle and low income countries. 
+In a second step, we are comparing our analysis to the findings of selected studies and papers. This will also give us insights about the situation in middle and low income countries and brings forth potential similarities/differences. 
 
 
 Project Organization
@@ -46,7 +44,7 @@ Description of Steps
 
 - Import of data, both raw and processed
 
-- Generation of tables which can be directly imported to latex 
+- Generation of tables which can be directly imported to Latex 
 
 - Connect Overleaf to Github
 
@@ -59,29 +57,23 @@ Description of Steps
 Data 
 ------------
 
-Data is pulled from [Alpha Vantage]
-(www.alphavantage.co) 
+Data is pulled from [Alpha Vantage]: www.alphavantage.co
 
 Resources
 ------------
 
-Beware the Bubble? The US Stock Market Cap-to-GDP Ratio
-[CFA Institute] https://blogs.cfainstitute.org/investor/2021/02/02/beware-the-bubble-the-us-stock-market-cap-to-gdp-ratio/
+Alajekwu Udoka Bernard and Achugbu Austin (2011); “The Role of Stock Market Development on Economic Growth in Nigeria: A Time Series Analysis,” African Research Review Vol. 5 (6), Serial No. 23, November.
 
-[MSCI]
+Beware the Bubble? The US Stock Market Cap-to-GDP Ratio, [CFA Institute]: https://blogs.cfainstitute.org/investor/2021/02/02/beware-the-bubble-the-us-stock-market-cap-to-gdp-ratio/
 
-Why economic growth has been a mirage for emerging market investors
-[Schroders]: (https://www.schroders.com/en/ch/wealth-management/insights/markte/why-economic-growth-has-been-a-mirage-for-emerging-market-investors/)
+Why economic growth has been a mirage for emerging market investors, [Schroders]: https://www.schroders.com/en/ch/wealth-management/insights/markte/why-economic-growth-has-been-a-mirage-for-emerging-market-investors/
 
-Linkages between Market Capitalization and Economic Growth: The Case of Emerging Markets
-
-Market Capitalization of Listed Domestic Companies (% of GDP)
-[World Bank]: (https://data.worldbank.org/indicator/CM.MKT.LCAP.GD.ZS)
+Market Capitalization of Listed Domestic Companies (% of GDP), [World Bank]: https://data.worldbank.org/indicator/CM.MKT.LCAP.GD.ZS
 
 Contributors
 ------------
-Flurina Schneider, Till Furger, Luis Escobar Farfan, Martina Stieger
 
+Flurina Schneider (@flurinaschneider), Till Furger (@tillfurger), Luis Escobar Farfan (@Iescobarfarfan), Martina Stieger (@mstiege)
 
 --------
 
