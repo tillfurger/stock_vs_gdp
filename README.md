@@ -13,28 +13,28 @@ Project Organization
 ------------
 
     ├── LICENSE
-    ├── README.md          <- The top-level README for developers using this project.
+    ├── README.md                <- The top-level README for developers using this project.
     ├── data
-    │   ├── processed      <- The final, canonical data sets for modeling.
-    │   └── raw            <- The original, immutable data dump.
+    │   ├── processed            <- The final, canonical data sets for modeling.
+    │   └── raw                  <- The original, immutable data dump.
     │
-    ├── notebooks          <- Jupyter notebooks
-    │
-    │
-    ├── reports            <- Generated analysis as PDF and LaTeX report and beamer presentation
-    │   └── figures        <- Generated graphics and figures to be used in reporting as .svg
-    │   └── svg-inkscape   <- Generated graphics and figures to be used in reporting as .pdf and .pdf_tex
-    │   └── tables         <- Generated tables to be used in reporting as .tex
+    ├── notebooks                <- Jupyter notebooks
     │
     │
-    ├── src                <- Source code for use in this project
-    │   ├──__init__.py     <- Makes src a Python module
+    ├── reports                  <- Generated analysis as PDF and LaTeX report and beamer presentation
+    │   └── figures              <- Generated graphics and figures to be used in reporting as .svg
+    │   └── svg-inkscape         <- Generated graphics and figures to be used in reporting as .pdf and .pdf_tex
+    │   └── tables               <- Generated tables to be used in reporting as .tex
+    │
+    │
+    ├── src                      <- Source code for use in this project
+    │   ├──__init__.py           <- Makes src a Python module
     │   │
-    │   ├── data           <- Scripts to download or generate data
+    │   ├── data                 <- Scripts to download or generate data
     │       └── make_dataset.py
     │  
     │
-    └── requirements.txt   <- Requirements necessary for this project
+    └── requirements.txt         <- Requirements necessary for this project
 
 
 Description of Steps 
