@@ -4,7 +4,7 @@ library(shinythemes)
 library(dplyr)
 library(readr)
 
-# Load data (how?)
+# Load data 
 clean_gdp_data_US <- read_csv("https://raw.githubusercontent.com/tillfurger/stock_vs_gdp/master/data/processed/clean_gdp_data.csv")
 clean_stock_data_spy500 <- read_csv("https://raw.githubusercontent.com/tillfurger/stock_vs_gdp/master/data/processed/clean_stock_data.csv")
 
@@ -14,7 +14,6 @@ clean_stock_data_spy500$interval <- "Quarterly"
 clean_gdp_data_US$type <- "US_gdp"
 clean_stock_data_spy500$type <- "spy500"
 
-#merge datasets
 
 # Define UI
 ui <- fluidPage(theme = shinytheme("lumen"),
