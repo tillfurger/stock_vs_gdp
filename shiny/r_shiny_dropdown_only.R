@@ -3,6 +3,7 @@ library(shiny)
 library(shinythemes)
 library(dplyr)
 library(readr)
+library(plotly)
 
 # Load data 
 clean_gdp_data_US <- read_csv("https://raw.githubusercontent.com/tillfurger/stock_vs_gdp/master/data/processed/clean_gdp_data.csv")
@@ -22,6 +23,7 @@ clean_gdp_data_US<- clean_gdp_data_US[order(as.Date(clean_gdp_data_US$date, form
 
 clean_gdp_data_US$return = diff(clean_gdp_data_US$value)/lag(clean_gdp_data_US$value)
 
+  
 
 # Define UI
 ui <- fluidPage(theme = shinytheme("lumen"),
@@ -66,13 +68,17 @@ server <- function(input, output) {
   # Create scatterplot object the plotOutput function is expecting
   output$lineplot <- renderPlot({
     
-    plot(x = selected_intervals_spy()$date, y = selected_intervals_spy()$q_return, type = "l",
-         xlab = "Date", ylab = "Return", col = "blue")
-    abline(h=mean(selected_intervals_spy()$q_return), col="blue", lty=2)
-    abline(h=mean(selected_intervals_gdp()$return), col="orange", lty=2)
-    lines(x=selected_intervals_gdp()$date, y=selected_intervals_gdp()$return, col="orange")
-    legend(1, 95, legend=c("SPY", "GDP"),
-           col=c("blue", "orange"), lty=1:2, cex=0.8)
+    plot <- ggplot() +
+      geom_line(data=selected_intervals_gdp(), aes(x=date, y=return), color="blue") +
+      geom_hline(aes(yintercept = mean(selected_intervals_gdp()$return, na.rm = T)), linetype="dashed", color="blue") +
+      geom_line(data=selected_intervals_spy(), aes(x=date, y=q_return), color="orange") +
+      geom_hline(aes(yintercept = mean(selected_intervals_spy()$q_return)), linetype="dashed", color="orange") + 
+      theme(panel.background = element_blank()) +
+      scale_y_continuous(labels = scales::percent) +
+      xlab("Date") +  
+      ylab("Return")
+    
+    ggplotly(plot)
     
     # Display only if smoother is checked
     # if(input$smoother){
