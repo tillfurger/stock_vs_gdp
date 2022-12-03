@@ -14,6 +14,14 @@ clean_stock_data_spy500$interval <- "Quarterly"
 clean_gdp_data_US$type <- "US_gdp"
 clean_stock_data_spy500$type <- "spy500"
 
+#reorder stock data
+clean_stock_data_spy500<- clean_stock_data_spy500[order(as.Date(clean_stock_data_spy500$date, format="%Y/%m/%d")),]
+
+#calculate quarterly gdp returns
+clean_gdp_data_US<- clean_gdp_data_US[order(as.Date(clean_gdp_data_US$date, format="%Y/%m/%d")),]
+
+clean_gdp_data_US$return = diff(clean_gdp_data_US$value)/lag(clean_gdp_data_US$value)
+
 
 # Define UI
 ui <- fluidPage(theme = shinytheme("lumen"),
@@ -43,19 +51,29 @@ ui <- fluidPage(theme = shinytheme("lumen"),
 # Define server function
 server <- function(input, output) {
   
-  # Subset data
-  selected_intervals <- reactive({
+  # Subset data GDP
+  selected_intervals_gdp <- reactive({
     clean_gdp_data_US %>%
       filter(interval == input$Interval)
   })
   
+  # Subset data SPY
+  selected_intervals_spy <- reactive({
+    clean_stock_data_spy500 %>%
+      filter(interval == input$Interval)
+  })
   
   # Create scatterplot object the plotOutput function is expecting
   output$lineplot <- renderPlot({
-    color = "#434343"
-    par(mar = c(4, 4, 1, 1))
-    plot(x = selected_intervals()$date, y = selected_intervals()$value, type = "l",
-         xlab = "Date", ylab = "GDP", col = color, fg = color, col.lab = color, col.axis = color)
+    
+    plot(x = selected_intervals_spy()$date, y = selected_intervals_spy()$q_return, type = "l",
+         xlab = "Date", ylab = "Return", col = "blue")
+    abline(h=mean(selected_intervals_spy()$q_return), col="blue", lty=2)
+    abline(h=mean(selected_intervals_gdp()$return), col="orange", lty=2)
+    lines(x=selected_intervals_gdp()$date, y=selected_intervals_gdp()$return, col="orange")
+    legend(1, 95, legend=c("SPY", "GDP"),
+           col=c("blue", "orange"), lty=1:2, cex=0.8)
+    
     # Display only if smoother is checked
     # if(input$smoother){
     #   smooth_curve <- lowess(x = as.numeric(selected_intervals()$date), y = selected_intervals()$close, f = input$f)
