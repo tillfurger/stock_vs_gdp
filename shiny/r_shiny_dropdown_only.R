@@ -4,6 +4,9 @@ library(shinythemes)
 library(dplyr)
 library(readr)
 library(plotly)
+#in order to publish
+library(packrat)
+library(rsconnect)
 
 # Load data 
 clean_gdp_data_US <- read_csv("https://raw.githubusercontent.com/tillfurger/stock_vs_gdp/master/data/processed/clean_gdp_data.csv")
@@ -31,10 +34,9 @@ ui <- fluidPage(theme = shinytheme("lumen"),
                 sidebarLayout(                              #layout with input and output definitions
                   sidebarPanel(                             #sidebar panel for inputs
                     
-                    checkboxInput(inputId = "Country Type",
-                                label = "Developed"),
+                    checkboxInput("smooth", label = "Developed country?", value = TRUE),
                     # Select type of data to plot
-                    selectInput(inputId = "Interval", label = strong("Interval"),
+                    selectizeInput(inputId = "Interval", label = strong("Interval"),
                                 choices = unique(clean_gdp_data_US$interval),
                                 selected = "Quarterly"),
                     
