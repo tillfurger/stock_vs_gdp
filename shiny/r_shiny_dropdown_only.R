@@ -46,7 +46,7 @@ ui <- fluidPage(theme = shinytheme("lumen"),
                   
                   # Output: Description, lineplot, and reference (main panel for displaying outputs)
                   mainPanel(
-                    plotOutput(outputId = "lineplot", height = "300px"),
+                    plotlyOutput(outputId = "lineplot", height = "300px"),
                     textOutput(outputId = "desc"),
                   )
                 )
@@ -68,7 +68,7 @@ server <- function(input, output) {
   })
   
   # Create scatterplot object the plotOutput function is expecting
-  output$lineplot <- renderPlot({
+  output$lineplot <- renderPlotly({
     
     plot <- ggplot() +
       geom_line(data=selected_intervals_gdp(), aes(x=date, y=return), color="blue") +
