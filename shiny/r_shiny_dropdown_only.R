@@ -31,14 +31,16 @@ ui <- fluidPage(theme = shinytheme("lumen"),
                 sidebarLayout(                              #layout with input and output definitions
                   sidebarPanel(                             #sidebar panel for inputs
                     
+                    checkboxInput(inputId = "Country Type",
+                                label = "Developed"),
                     # Select type of data to plot
                     selectInput(inputId = "Interval", label = strong("Interval"),
                                 choices = unique(clean_gdp_data_US$interval),
                                 selected = "Quarterly"),
                     
-                    # # Select date range to be plotted
-                    # dateRangeInput("date", strong("Date range"), start = "2000-01-01", end = "2022-11-01",
-                    #                min = "2000-01-01", max = "2022-11-01"),
+                    # Select date range to be plotted
+                    dateRangeInput("date", strong("Date range"), start = "2000-01-01", end = "2022-11-01",
+                                  min = "2000-01-01", max = "2022-11-01"),
                     
                   ),
                   
@@ -97,16 +99,6 @@ server <- function(input, output) {
 # Create Shiny object
 shinyApp(ui = ui, server = server)
 
-# 
-# 
-# '''
-# plotly
-# could also do sliderInput (after "sidebar panel)
-# 
-# sliderInput(inputId = "bins",
-#             label = "Number of bins:",
-#             min = 1,
-#             max = 50,
-#             value = 30)
+
 
 
