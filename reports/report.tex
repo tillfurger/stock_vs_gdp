@@ -1,28 +1,42 @@
-\documentclass{article}
+\documentclass[12pt,a4paper,english]{article}
 \usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{svg}
 \usepackage{amsmath}
 \usepackage{johd}
 \usepackage{natbib}
-
+\usepackage{numprint}
+\usepackage{siunitx}
+\newcommand{\round}[2]{\num[round-mode=places,round-precision=#1]{#2}}
+\usepackage{booktabs}
+\usepackage{authblk}
+\npdecimalsign{.}
+\nprounddigits{2}
 \title{SPY vs. US GDP}
+\author[1]{Martina Stieger}
+\author[1]{Flurina Schneider}
+%\affil{University of Zurich, Plattenstrasse 14, 8032 Zurich, Switzerland
+\author[1]{Till Furger}
+\author[1]{Luis Onesimo Leonardo Escobar Farfan}
+\affil[1]{University of Zurich, Plattenstrasse 14, 8032 Zurich, Switzerland}
 
-\author{
     
-    Martina Stieger\thanks{Department of Banking \& Finance, University of Zurich, Plattenstrasse 14, 8032 Zurich, Switzerland, \tt{martina.stieger@uzh.ch}} \rule{0.5in}{0pt}
-
-    Flurina Schneider\thanks{Department of Economics, University of Zurich, Schönberggasse 1, 8001 Zurich, Switzerland, \tt{flurina.schneider@uzh.ch}} \rule{0.5in}{0pt}
-        
-    Luis Escobar\thanks{Department of Banking \& Finance University of Zurich, Plattenstrasse 14, 8032 Zurich, Switzerland, \tt{luis.escobar@uzh.ch}} \rule{0.5in}{0pt}
-    
-    Till Furger\thanks{Department of Business Administration, University of Zurich and Wineus AG, Plattenstrasse 14, 8032 Zurich, Switzerland, \tt{till.furger@uzh.ch}}\\
-    
-    \small \date{\today}
-}
+%\author{
+%    
+%    Martina Stieger\thanks{University of Zurich, Plattenstrasse 14, 8032 Zurich, Switzerland, \tt{martina.stieger@uzh.ch}} \rule{0.5in}{0pt}
+%
+ %   Flurina Schneider\thanks{University of Zurich, Plattenstrasse 14, 8032 Zurich, Switzerland, \tt{flurina.schneider@uzh.ch}} \rule{0.5in}{0pt}
+%        
+%    Luis Escobar\thanks{University of Zurich, Plattenstrasse 14, 8032 Zurich, Switzerland, \tt{luis.escobar@uzh.ch}} \rule{0.5in}{0pt}
+%    
+ %   Till Furger\thanks{Department of Business Administration and Wineus AG, University of Zurich, Plattenstrasse 14, 8032 Zurich, Switzerland, \tt{till.furger@uzh.ch}}\\
+%    
+%    \small \date{\today}
+%}
 
 
 \begin{document}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TITLE PAGE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -71,8 +85,8 @@ Describe the context and motivation of your paper.
 
 
 
-
 \begin{table}[H]
+    \centering
 	\input{tables/summary_statistics.tex}
 	\caption{Summary Statistics}
 \end{table}
