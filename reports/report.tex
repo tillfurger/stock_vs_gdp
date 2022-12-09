@@ -5,9 +5,13 @@
 \usepackage{amsmath}
 \usepackage{johd}
 \usepackage{natbib}
+\usepackage{numprint}
+\usepackage{siunitx}
+\newcommand{\round}[2]{\num[round-mode=places,round-precision=#1]{#2}}
 \usepackage{booktabs}
 \usepackage{authblk}
-
+\npdecimalsign{.}
+\nprounddigits{2}
 \title{SPY vs. US GDP}
 \author[1]{Martina Stieger}
 \author[1]{Flurina Schneider}
@@ -76,8 +80,8 @@ Describe the context and motivation of your paper.
 
 
 
-
 \begin{table}[H]
+    \centering
 	\input{tables/summary_statistics.tex}
 	\caption{Summary Statistics}
 \end{table}
