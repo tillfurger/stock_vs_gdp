@@ -30,24 +30,28 @@ clean_gdp_data_US$return = diff(clean_gdp_data_US$value)/lag(clean_gdp_data_US$v
 
 # Define UI
 ui <- fluidPage(theme = shinytheme("lumen"),
-                titlePanel("Stock vs Gdp"),
+                titlePanel("Stock market capitalization vs GDP"),
                 sidebarLayout(                              #layout with input and output definitions
                   sidebarPanel(                             #sidebar panel for inputs
-                    
-                    checkboxInput("smooth", label = "Developed country?", value = TRUE),
+                  
                     # Select type of data to plot
-                    selectizeInput(inputId = "Interval", label = strong("Interval"),
+                    selectizeInput(inputId = "Interval", label = strong("Select frequency"),
                                 choices = unique(clean_gdp_data_US$interval),
                                 selected = "Quarterly"),
                     
                     # Select date range to be plotted
-                    dateRangeInput("date", strong("Date range"), start = "2000-01-01", end = "2022-11-01",
+                    dateRangeInput("date", strong("Select date range"), start = "2000-01-01", end = "2022-11-01",
                                   min = "2000-01-01", max = "2022-11-01"),
                     
                   ),
                   
                   # Output: Description, lineplot, and reference (main panel for displaying outputs)
                   mainPanel(
+
+                    checkboxInput("smooth", label = ("High income country"), value = TRUE),
+                    checkboxInput("smooth", label = ("High income country"), value = TRUE),
+                    checkboxInput("smooth", label = ("High income country"), value = TRUE),
+
                     plotlyOutput(outputId = "lineplot", height = "300px"),
                     textOutput(outputId = "desc"),
                   )
