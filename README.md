@@ -4,9 +4,13 @@ Final Project: Stock Market Capitalization vs. GDP Growth
 Intro
 ------------
 
-In this project, we are examining whether the stock market capitalization grows faster than the GDP, with a focus on developed countries. For that purpose, we use data from Alpha Vantage for the United States and provide an analysis of the data through interactive graphs and tables. We will also give a short interpretation of our findings.
+In this project, we are examining whether the stock market capitalization grows faster than the GDP, with a focus on developed countries, namely the United States. The ratio between a country's market capitalization and its GDP is also called the "Buffet indicator" and is often used to get an insight if the stock market is undervalued or overvalued. 
 
-In a second step, we are comparing our analysis to the findings of selected studies and papers. This will also give us insights about the situation in middle and low income countries and brings forth potential similarities/differences. 
+For our research, we use data from Alpha Vantage for the United States and provide an analysis of the data through graphs and tables. We also give a short interpretation of our findings.
+
+In a second step, we are comparing our analysis to the situation in emerging markets in order to get insights about the situation in middle and low income countries and to bring forth potential similarities and differences. In order to visualize these effectively, we have developed an interactive app where each user can undertake robustness checks on his own. We have considered visualisation principles for our graphs and apps and designed them in a colorblind-friendly manner.
+
+Finally, we also compare our research to the findings of selected studies and papers in the field. 
 
 
 Project Organization
@@ -42,17 +46,19 @@ Description of Steps
 
 - Preparation of  a folder structure, using the cookiecutter Data Science template
 
-- Import of data, both raw and processed
+- Import of data, both raw and processed (stock market capitalization and GDP for both developed and emerging markets)
+
+- Create upstream and downstream functions
 
 - Generation of tables which can be directly imported to Latex 
 
 - Connect Overleaf to Github
 
-- Use Plotly to create interactive graphs in order to do robustness checks
+- Use R Shiny and Plotly to create interactive graphs in order to do robustness checks (date range, frequency, type of country)
 
 - Analysis and interpretation of findings
 
-- Provision of context (international markets)
+- Compare results with those of selected papers
 
 Data 
 ------------
@@ -67,6 +73,8 @@ Alajekwu Udoka Bernard and Achugbu Austin (2011); “The Role of Stock Market De
 Beware the Bubble? The US Stock Market Cap-to-GDP Ratio, [CFA Institute]: https://blogs.cfainstitute.org/investor/2021/02/02/beware-the-bubble-the-us-stock-market-cap-to-gdp-ratio/
 
 Why economic growth has been a mirage for emerging market investors, [Schroders]: https://www.schroders.com/en/ch/wealth-management/insights/markte/why-economic-growth-has-been-a-mirage-for-emerging-market-investors/
+
+Market Cap to GDP Ratio (the Buffett Indicator), [Corporate Finance Institute]: https://corporatefinanceinstitute.com/resources/valuation/market-cap-to-gdp-buffett-indicator/![image](https://user-images.githubusercontent.com/53712031/206927198-af7a423d-d89f-4eda-9eb2-92817d75a8fd.png)
 
 Market Capitalization of Listed Domestic Companies (% of GDP), [World Bank]: https://data.worldbank.org/indicator/CM.MKT.LCAP.GD.ZS
 
