@@ -62,13 +62,13 @@ ui <- fluidPage(theme = shinytheme("lumen"),
                     # start and end are always specified in yyyy-mm-dd
                     
                     
-                    dateRangeInput("daterange1", 
+                    dateRangeInput("dates", 
                                    label = "Date range:",
                                    start = "2000-01-01",
                                    end = "2022-11-01",
                                    min = "2000-01-01",
                                    max = "2022-11-01",
-                                   format = "mm/dd/yy",
+                                   format = "yy/mm/dd",
                                    separator = " - "),
                     
                   ),
@@ -90,28 +90,32 @@ server <- function(input, output, session) { #do i have to add "session"??
   # Subset data GDP
   selected_intervals_gdp <- reactive({
     clean_gdp_data_US %>%
-      filter(interval == input$Interval)
+      filter(interval == input$Interval,
+             date >= input$dates[1],
+             date <= input$dates[2])
   })
   
   # Subset data SPY
   selected_intervals_spy <- reactive({
     clean_stock_data_spy500 %>%
-      filter(interval == input$Interval)
+      filter(interval == input$Interval,
+             date >= input$dates[1],
+             date <= input$dates[2])
   })
   
   #Date
-  observe({ #observe funct correct??
-    selected_date <- as.Date(paste0("2000-01-01", input$daterange1))
-    
-    updateDateRangeInput(session, "inDateRange",
-                         label = paste("Date range label", input$daterange1),
-                         start = "2000-01-01", 
-                         end = "2022-11-01",
-                         min = "2000-01-01", 
-                         max = "2022-11-01")
-    
-  }) #do i have to render plotly here?? Or only once in the end??
-  
+  # observe({ #observe funct correct??
+  #   selected_date <- as.Date(paste0("2000-01-01", input$daterange1))
+  #   
+  #   updateDateRangeInput(session, "inDateRange",
+  #                        label = paste("Date range label", input$daterange1),
+  #                        start = "2000-01-01", 
+  #                        end = "2022-11-01",
+  #                        min = "2000-01-01", 
+  #                        max = "2022-11-01")
+  #   
+  # }) #do i have to render plotly here?? Or only once in the end??
+  # 
   
   #Checkbox
   output$value <- renderPlotly({input$smooth}) #render plotly now?? Should I work with "switch"?
