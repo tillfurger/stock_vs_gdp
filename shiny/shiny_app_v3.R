@@ -33,20 +33,23 @@ clean_stock_data_spy500$interval <- "Quarterly"
 clean_gdp_data_US$type <- "US_gdp"
 clean_stock_data_spy500$type <- "spy500"
 
+#rename variables to be nicely displayed in plotly tooltip
+clean_stock_data_spy500$return <- round(clean_stock_data_spy500$q_return,3)
+
 #reorder stock data
 clean_stock_data_spy500<- clean_stock_data_spy500[order(as.Date(clean_stock_data_spy500$date, format="%Y/%m/%d")),]
 
 #calculate quarterly gdp returns
 clean_gdp_data_US<- clean_gdp_data_US[order(as.Date(clean_gdp_data_US$date, format="%Y/%m/%d")),]
 
-clean_gdp_data_US$return = diff(clean_gdp_data_US$value)/lag(clean_gdp_data_US$value)
+clean_gdp_data_US$return = round(diff(clean_gdp_data_US$value)/lag(clean_gdp_data_US$value),3)
 
 
 
 # Define UI
 
 ui <- fluidPage(theme = shinytheme("lumen"),
-                titlePanel("Stock market capitalization vs GDP"),
+                titlePanel("Stock Market Capitalization vs. GDP"),
                 sidebarLayout(                              #layout with input and output definitions
                   sidebarPanel(                             #sidebar panel for inputs
                     
@@ -103,19 +106,8 @@ server <- function(input, output, session) { #do i have to add "session"??
              date <= input$dates[2])
   })
   
-  #Date
-  # observe({ #observe funct correct??
-  #   selected_date <- as.Date(paste0("2000-01-01", input$daterange1))
-  #   
-  #   updateDateRangeInput(session, "inDateRange",
-  #                        label = paste("Date range label", input$daterange1),
-  #                        start = "2000-01-01", 
-  #                        end = "2022-11-01",
-  #                        min = "2000-01-01", 
-  #                        max = "2022-11-01")
-  #   
-  # }) #do i have to render plotly here?? Or only once in the end??
-  # 
+  
+  
   
   #Checkbox
   output$value <- renderPlotly({input$smooth}) #render plotly now?? Should I work with "switch"?
@@ -124,30 +116,23 @@ server <- function(input, output, session) { #do i have to add "session"??
   # Create scatterplot object the plotOutput function is expecting
   output$p <- renderPlotly({
     
-    plot <- ggplot() +
-      geom_line(data=selected_intervals_gdp(), aes(x=date, y=return), color="blue") +
-      geom_hline(aes(yintercept = mean(selected_intervals_gdp()$return, na.rm = T)), linetype="dashed", color="blue") +
-      geom_line(data=selected_intervals_spy(), aes(x=date, y=q_return), color="orange") +
-      geom_hline(aes(yintercept = mean(selected_intervals_spy()$q_return)), linetype="dashed", color="orange") + 
-      theme(panel.background = element_blank()) +
-      scale_y_continuous(labels = scales::percent) +
-      xlab("Date") +  
-      ylab("Return")
+    # Create plot
+    p <- plot_ly(selected_intervals_gdp(), x = ~date, y = ~return, type = "scatter", mode = "lines", color = I("blue"), name = "GDP") %>%
+      add_trace(data = selected_intervals_spy(), x = ~date, y = ~return, type = "scatter", mode = "lines", color = I("orange"), name = "SPY") %>%
+      add_trace(data = selected_intervals_gdp(), x = ~date, y = ~mean(return, na.rm=T), type = "scatter", mode = "lines", color = I("orange"), name = "Mean Stock Return", line = list(dash = "dash")) %>%
+      add_trace(data = selected_intervals_spy(), x = ~date, y = ~mean(return, na.rm=T), type = "scatter", mode = "lines", color = I("blue"), name = "Mean GDP Return", line = list(dash = "dash")) %>%
+      layout(title = "Stock Market Capitalization vs. GDP",
+             xaxis = list(title = "Date",
+                          showgrid=FALSE),
+             yaxis = list(title = "Return", tickformat = ".2%", 
+                          showgrid=FALSE)) %>%
+      layout(hoverlabel = list(bgcolor = "white", bordercolor = "grey", font = list(color = "black")),
+             plot_bgcolor = I("white"),
+             paper_bgcolor = I("white"))
     
-    ggplotly(plot) #Where should this command be run?? Bc we want everything included, also checkbox etc
+    # Return plot
+    p
     
-    # # Pull in description of interval
-    #output$desc <- renderText({
-    #interval_text <- filter(clean_gdp_data_US, type == input$Interval) %>% pull(Interval)
-    #paste(interval_text, "Blabla.")
-    #})
-    
-    
-    # Display only if smoother is checked
-    #if(input$smoother){
-    #smooth_curve <- lowess(x = as.numeric(selected_intervals()$date), y = selected_intervals()$close, f = input$f)
-    #lines(smooth_curve, col = "#E6553A", lwd = 3)
-    # }
   })
   
   
