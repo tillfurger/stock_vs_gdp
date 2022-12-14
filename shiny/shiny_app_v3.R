@@ -120,7 +120,7 @@ server <- function(input, output, session) { #do i have to add "session"??
     p <- plot_ly(selected_intervals_gdp(), x = ~date, y = ~return, type = "scatter", mode = "lines", color = I("blue"), name = "GDP") %>%
       add_trace(data = selected_intervals_spy(), x = ~date, y = ~return, type = "scatter", mode = "lines", color = I("orange"), name = "SPY") %>%
       add_trace(data = selected_intervals_gdp(), x = ~date, y = ~mean(return, na.rm=T), type = "scatter", mode = "lines", color = I("orange"), name = "Mean Stock Return", line = list(dash = "dash")) %>%
-      add_trace(data = selected_intervals_spy(), x = ~date, y = ~mean(return, na.rm=T), type = "scatter", mode = "lines", color = I("blue"), name = "Mean GDP Return", line = list(dash = "dash")) %>%
+      add_trace(data = selected_intervals_spy(), x = ~date, y = ~mean(return, na.rm=T), type = "scatter", mode = "lines", color = I("blue"), name = "Mean SPY Return", line = list(dash = "dash")) %>%
       layout(title = "Stock Market Capitalization vs. GDP",
              xaxis = list(title = "Date",
                           showgrid=FALSE),
