@@ -141,4 +141,4 @@ server <- function(input, output, session) { #do i have to add "session"??
 # Create Shiny object
 shinyApp(ui = ui, server = server)
 
-#libraries, selectivize und p ersetzt, checkbox noch mehr ausgeführt
+
