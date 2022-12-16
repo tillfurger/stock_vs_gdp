@@ -22,21 +22,16 @@ calculate_returns = function(df, interval) {
   
 }
 
-#helper function 2 (will later delete and just leave in folder)
-
-
 
 # Load data 
 clean_gdp_data_US <- read_csv("https://raw.githubusercontent.com/tillfurger/stock_vs_gdp/master/data/processed/clean_gdp_data.csv")
 clean_stock_data_spy500 <- read_csv("https://raw.githubusercontent.com/tillfurger/stock_vs_gdp/master/data/processed/clean_stock_data.csv")
-#clean_data_global <- read_csv("...")
 
 #add variable defining interval of values
 clean_gdp_data_US$interval <- "Quarterly"
 clean_stock_data_spy500$interval <- "Quarterly"
 clean_gdp_data_US$type <- "US_gdp"
 clean_stock_data_spy500$type <- "spy500"
-#clean_data_global$interval <- "Quarterly"
 
 #rename variables to be nicely displayed in plotly tooltip
 clean_stock_data_spy500$return <- round(clean_stock_data_spy500$q_return,3)
@@ -80,12 +75,6 @@ ui <- fluidPage(theme = shinytheme("lumen"),
                                    separator = " - "),
                     
                   ),
-
-                    #Select Region
-                    #selectInput("region", "Select a region:",
-                              #choices = c("USA", "Europa& Central Asia", "Latin America& Caribbean", "East Asia& Pacific"),
-                              #selected = "USA")
-                  
                   
                   # Output: Description, lineplot, and reference (main panel for displaying outputs)
                   mainPanel(
@@ -121,20 +110,7 @@ server <- function(input, output, session) { #do i have to add "session"??
   
   
   #Checkbox
-  output$value <- renderPlotly({
-   if(input$smooth) {
-     h1("Output is shown")
-    } else {
-      h1("Output is hidden")
-   }}) #render plotly now?? Should I work with "switch"? Need several loops and diff names bc 3 different checkboxes! 
-#need different logic too -> filter 
-
-  #Use input from dropdown menu 'region'
-  #output$dataTable <- renderDataTable({
-   #data <- data[data$region == input$region,]
-   #data
-  #})
-
+  output$value <- renderPlotly({input$smooth}) #render plotly now?? Should I work with "switch"?
   
   
   # Create scatterplot object the plotOutput function is expecting
@@ -165,4 +141,4 @@ server <- function(input, output, session) { #do i have to add "session"??
 # Create Shiny object
 shinyApp(ui = ui, server = server)
 
-
+#libraries, selectivize und p ersetzt, checkbox noch mehr ausgeführt
