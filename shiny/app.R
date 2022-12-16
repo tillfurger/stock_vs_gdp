@@ -11,7 +11,7 @@ library(rsconnect)
 
 
 # Load data 
-clean_data_global <- read_csv("data/processed/data_full_shiny_long.csv")
+clean_data_global <- read_csv("../data/processed/data_full_shiny_long.csv")
 
 
 #round values to be nicely displayed in plotly tooltip
