@@ -4,49 +4,34 @@ library(shinythemes)
 library(dplyr)
 library(readr)
 library(plotly)
+library(tidyverse)
 #in order to publish
 library(packrat)
 library(rsconnect)
 
 
-# helper functions (can also put this into a sep. doc but same working directory!)
-calculate_returns = function(df, interval) {
-  
-  if (interval == "Quarterly") {
-    
-    df<- df[order(as.Date(df$date, format="%Y/%m/%d")),]
-    
-    df$q_return = diff(df$value)/lag(df$value)
-    
-  }
-  
-}
-
-#helper function 2 (will later delete and just leave in folder)
-
 # Load data 
-clean_gdp_data_US <- read_csv("https://raw.githubusercontent.com/tillfurger/stock_vs_gdp/master/data/processed/clean_gdp_data.csv")
-clean_stock_data_spy500 <- read_csv("https://raw.githubusercontent.com/tillfurger/stock_vs_gdp/master/data/processed/clean_stock_data.csv")
-#clean_data_global <- read_csv("...")
+clean_data_global <- read_csv("data/processed/data_full_shiny_long.csv")
 
-#add variable defining interval of values
-clean_gdp_data_US$interval <- "Quarterly"
-clean_stock_data_spy500$interval <- "Quarterly"
-clean_gdp_data_US$type <- "US_gdp"
-clean_stock_data_spy500$type <- "spy500"
-#clean_data_global$interval <- "Quarterly"
 
-#rename variables to be nicely displayed in plotly tooltip
-clean_stock_data_spy500$return <- round(clean_stock_data_spy500$q_return,3)
+#round values to be nicely displayed in plotly tooltip
+clean_data_global$value <- round(clean_data_global$value,3)
+
+#first try with three countries (low-middle- + high-income country)
+data_app <- subset(clean_data_global, clean_data_global$name=="United States"| clean_data_global$name=="Mexico"|clean_data_global$name=="Indonesia")
+
+#create variable specifying if: absolute, quarterly, or yearly returns
+data_app$type <- ifelse(grepl("q_growth", data_app$variable), "Quarterly", ifelse(grepl("y_growth", data_app$variable), "Yearly", "Absolute"))
+
+#keep only growth rates
+data_app <- subset(data_app, data_app$type !="Absolute")
+
+#rename variable value "return" to make it fit with code written below
+
+data_app$return <- data_app$value
 
 #reorder stock data
-clean_stock_data_spy500<- clean_stock_data_spy500[order(as.Date(clean_stock_data_spy500$date, format="%Y/%m/%d")),]
-
-#calculate quarterly gdp returns
-clean_gdp_data_US<- clean_gdp_data_US[order(as.Date(clean_gdp_data_US$date, format="%Y/%m/%d")),]
-
-clean_gdp_data_US$return = round(diff(clean_gdp_data_US$value)/lag(clean_gdp_data_US$value),3)
-
+#clean_stock_data_spy500<- clean_stock_data_spy500[order(as.Date(clean_stock_data_spy500$date, format="%Y/%m/%d")),]
 
 
 # Define UI
@@ -60,7 +45,7 @@ ui <- fluidPage(theme = shinytheme("lumen"),
                     
                     # Select type of data to plot
                     selectizeInput(inputId = "Interval", label = strong("Select frequency"),
-                                   choices = unique(clean_gdp_data_US$interval),
+                                   choices = unique(data_app$type),
                                    selected = "Quarterly"),
                     
                     # Select date range to be plotted
@@ -68,7 +53,7 @@ ui <- fluidPage(theme = shinytheme("lumen"),
                     # start and end are always specified in yyyy-mm-dd
                     
                     
-                    dateRangeInput("dates", 
+                    dateRangeInput("dates", #Daterange noch ändern!!
                                    label = "Date range:",
                                    start = "2000-01-01",
                                    end = "2022-11-01",
@@ -80,69 +65,68 @@ ui <- fluidPage(theme = shinytheme("lumen"),
                   ),
                   
                   #Select Region
-                  #selectInput("region", "Select a region:",
-                  #choices = c("USA", "Europa& Central Asia", "Latin America& Caribbean", "East Asia& Pacific"),
-                  #selected = "USA")
-
-
-
-
-
-
+                  # selectInput("region", "Select a region:",
+                  # choices = c("North America", "Europe & Central Asia", "Latin America & Caribbean", "East Asia & Pacific"),
+                  # selected = "North America"),
+                  # plotlyOutput() - hier reinnehmen??
+                  
                   # Output: Description, lineplot, and reference (main panel for displaying outputs)
                   mainPanel(
                     
-                    checkboxInput("smooth", label = ("High income country"), value = TRUE),
-                    checkboxInput("smooth", label = ("Middle income country"), value = TRUE),
-                    checkboxInput("smooth", label = ("Low income country"), value = TRUE),
+                    checkboxInput("smooth", label = ("United States"), value = TRUE),
+                    checkboxInput("smooth", label = ("Mexico"), value = TRUE),
+                    checkboxInput("smooth", label = ("Indonesia"), value = TRUE),
                     plotlyOutput(outputId = "p", height = "300px"),
                     textOutput(outputId = "desc"),
                   )
                 )
+                
 )
+
+
 # Define server function
 server <- function(input, output, session) { #do i have to add "session"??
   
   # Subset data GDP
-  selected_intervals_gdp <- reactive({
-    clean_gdp_data_US %>%
-      filter(interval == input$Interval,
+  selected_data <- reactive({
+    data_app %>%
+      filter(type == input$Interval,
              date >= input$dates[1],
-             date <= input$dates[2])
+             date <= input$dates[2]
+      )
   })
   
-  # Subset data SPY
-  selected_intervals_spy <- reactive({
-    clean_stock_data_spy500 %>%
-      filter(interval == input$Interval,
-             date >= input$dates[1],
-             date <= input$dates[2])
-  })
   
-    #Checkbox
-  output$value <- renderPlotly({
-    if(input$smooth) {
-      h1("Output is shown")
-    } else {
-      h1("Output is hidden")
-    }}) #render plotly now?? Should I work with "switch"? Need several loops and diff names bc 3 different checkboxes! 
-  #need different logic too -> filter 
   
-  #Use input from dropdown menu 'region'
-  #output$dataTable <- renderDataTable({
-  #data <- data[data$region == input$region,]
-  #data
-  #})
- 
+  #Checkbox
+  # output$p <- renderPlotly({
+  #   if(input$smooth) {
+  #     h1("Output is shown") #hier muss dann der plot rein
+  #   } else {
+  #     h1("Output is hidden")
+  #   }}) #render plotly now?? Should I work with "switch"? Need several loops and diff names bc 3 different checkboxes! 
+  # #need different logic too -> filter 
+  # 
+  # #Use input from dropdown menu 'region'
+  # selected_region <-  clean_data_global %>%
+  #   filter(region == input$region)
+  # 
+  # #output$region_plot <- renderPlotly({
+  # #data <- data[data$region == input$region,]
+  # #data
+  # #})
+  # 
+  # #Wann muss man das renderPlotly machen, erst ganz am Schluss? Zeugs ist ja gar nicht interaktiv..
+  # 
   
   # Create scatterplot object the plotOutput function is expecting
-  output$p <- renderPlotly({
+  output$p <- renderPlotly({ #hier muss dann der plot rein
     
     # Create plot
-    p <- plot_ly(selected_intervals_gdp(), x = ~date, y = ~return, type = "scatter", mode = "lines", color = I("#0072B2"), name = "GDP") %>%
-      add_trace(data = selected_intervals_spy(), x = ~date, y = ~return, type = "scatter", mode = "lines", color = I("#D55E00"), name = "SPY") %>%
-      add_trace(data = selected_intervals_gdp(), x = ~date, y = ~mean(return, na.rm=T), type = "scatter", mode = "lines", color = I("#0072B2"), name = "Mean GDP Return", line = list(dash = "dash")) %>%
-      add_trace(data = selected_intervals_spy(), x = ~date, y = ~mean(return, na.rm=T), type = "scatter", mode = "lines", color = I("#D55E00"), name = "Mean SPY Return", line = list(dash = "dash")) %>%
+    p <- plot_ly(selected_data(), x = ~date, y = ~return, type = "scatter", mode = "lines", color = I("#0072B2"), name = "GDP") %>%
+      add_trace(data = selected_data(), x = ~date, y = ~return, type = "scatter", mode = "lines", color = I("#D55E00"), name = "SPY") %>%
+      add_trace(data = selected_data(), x = ~date, y = ~mean(return, na.rm=T), type = "scatter", mode = "lines", color = I("#0072B2"), name = "Mean GDP Return", line = list(dash = "dash")) %>%
+      add_trace(data = selected_data(), x = ~date, y = ~mean(return, na.rm=T), type = "scatter", mode = "lines", color = I("#D55E00"), name = "Mean SPY Return", line = list(dash = "dash")) %>%
       layout(title = "Stock Market Capitalization vs. GDP",
              xaxis = list(title = "Date",
                           showgrid=FALSE),
@@ -162,5 +146,3 @@ server <- function(input, output, session) { #do i have to add "session"??
 
 # Create Shiny object
 shinyApp(ui = ui, server = server)
-
-#libraries, selectivize und p ersetzt, checkbox noch mehr ausgeführt
