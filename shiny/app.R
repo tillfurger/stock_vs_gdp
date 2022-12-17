@@ -3,8 +3,10 @@ library(shiny)
 library(shinythemes)
 library(dplyr)
 library(readr)
+library(emojifont)
 library(plotly)
 library(tidyverse)
+library(shinyWidgets)
 library(RColorBrewer)
 # in order to publish
 library(packrat)
@@ -64,18 +66,18 @@ data_app$return <- data_app$value
 ui <- fluidPage(theme = shinytheme("lumen"),
                 titlePanel("Stock Market Capitalization vs. GDP"),
                 sidebarLayout(                              #layout with input and output definitions
-                  sidebarPanel(                             #sidebar panel for inputs
+                  sidebarPanel(style = "position:fixed;width:inherit;",    width = 2,                       #sidebar panel for inputs
                     
                     
                     
                     # Select type of data to plot
-                    selectizeInput(inputId = "Interval", label = strong("Select Frequency"),
+                    selectizeInput(inputId = "Interval", label = strong(paste0("Select Frequency ",emoji(search_emoji("chart_with_upwards_trend"))) ),
                                    choices = unique(data_app$type),
                                    selected = "Quarterly"),
                     
                     # Select date range to be plotted
                     dateRangeInput("dates", 
-                                   label = strong("Select Date Range (yy/mm/dd)"),
+                                   label = strong(paste0("Select Date Range ", emoji(search_emoji("calendar"))[2])),
                                    start = "2000-01-01",
                                    end = "2022-11-01",
                                    min = "2000-01-01",
@@ -83,16 +85,19 @@ ui <- fluidPage(theme = shinytheme("lumen"),
                                    format = "yy/mm/dd",
                                    separator = " - "),
                     br(),
-                    p("Please note that keyboard input does not work, only clicking to select date range.")
+                    p("Please note that keyboard inputs are not accepted, only values obtained by clicking through the dates."),
+                    
+                    #checkboxes to select which countries to include
+                    prettyCheckboxGroup("country", label = strong(paste0("Select countries to include ", emoji(search_emoji("globe_with_meridians")))), 
+                                        icon = icon("check"),
+                                        choices = unique(data_app$name),
+                                        selected = c("United States", "Mexico"), inline = T)
                     
                   ),
                   
                   
                   # Output: Description, lineplot, and reference (main panel for displaying outputs)
-                  mainPanel(
-                    checkboxGroupInput("country", label = strong("Select countries to include"), 
-                                       choices = unique(data_app$name),
-                                       selected = c("United States", "Mexico"), inline = T),
+                  mainPanel(  width = 10,  
                     h2(strong("Line Chart", align = "center")),
                     plotlyOutput(outputId = "p", height = "300px"),
                     br(), br(),
