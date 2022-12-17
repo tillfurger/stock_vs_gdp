@@ -15,7 +15,7 @@ library(rsconnect)
 ###############
 
 # Load data
-clean_data_global <- read_csv("../data/processed/data_full_shiny_long.csv")
+clean_data_global <- read_csv(url("https://raw.githubusercontent.com/tillfurger/stock_vs_gdp/master/shiny/shiny_data/data_full_shiny_long.csv"))
 
 # create colorblind friendly color palette --> check with colorblindly
 palette <- colorRampPalette(brewer.pal(n = 9, name = "RdBu"))(6)
@@ -42,6 +42,9 @@ data_app$combination <- paste(data_app$name, data_app$series)
 # create variable to specify combination of country, growth rate selected and series
 data_app$combination_frequency <- paste(data_app$combination, data_app$type)
 
+# if mean values, add this to variable name for legend in shiny app
+#data_app$combination_frequency <- ifelse(data_app$)
+
 
 # create variable containing average return of each variable "combination_frequency"
 data_app <- data_app %>% group_by(combination_frequency) %>% mutate(ave_value = round(mean(value, na.rm = T),3))
@@ -66,19 +69,21 @@ ui <- fluidPage(theme = shinytheme("lumen"),
                     
                     
                     # Select type of data to plot
-                    selectizeInput(inputId = "Interval", label = strong("Select frequency"),
+                    selectizeInput(inputId = "Interval", label = strong("Select Frequency"),
                                    choices = unique(data_app$type),
                                    selected = "Quarterly"),
                     
                     # Select date range to be plotted
                     dateRangeInput("dates", 
-                                   label = strong("Select date range (yy/mm/dd)"),
+                                   label = strong("Select Date Range (yy/mm/dd)"),
                                    start = "2000-01-01",
                                    end = "2022-11-01",
                                    min = "2000-01-01",
                                    max = "2022-11-01",
                                    format = "yy/mm/dd",
                                    separator = " - "),
+                    br(),
+                    p("Please note that keyboard input does not work, only clicking to select date range.")
                     
                   ),
                   
@@ -122,19 +127,19 @@ server <- function(input, output, session) {
     p <- plot_ly(data_plot(), x = ~date, y = ~return, color = ~combination_frequency, type = "scatter", mode = "lines",
                  line = list(width = 1.5),
                  hoverinfo = "text",
-                 text = ~paste("Country: ", name, "<br>", "Date: ", date, "<br>", "Return: ", return, "%"), colors = palette)   %>%
+                 text = ~paste("Country: ", name, "<br>", "Date: ", date, "<br>", "Growth Rate: ", return, "%"), colors = palette)   %>%
       add_trace(data = data_plot(), x = ~date, y = ~ave_value, color = ~combination_frequency, type = "scatter", mode = "lines",  line = list(dash = "dash"),
                 hoverinfo = "text",
-                text = ~paste("Country: ", name, "<br>", paste0("Avg. Return ", series, ": "), ave_value, "%")) %>%
+                text = ~paste("Country: ", name, "<br>", paste0("Avg. Growth Rate ", data_plot()$series, ": "), ave_value, "%"),
+                name = paste0(data_plot()$name," Mean ", data_plot()$series, " Growth Rate")) %>%
       layout(title = "Stock Market Capitalization vs. GDP",
              xaxis = list(title = "Date",
                           showgrid=FALSE),
-             yaxis = list(title = "Return",
+             yaxis = list(title = "Growth Rate",
                           showgrid=FALSE, tickformat = ".2%"))
     
     # Return plot
     p
-    
   })
   
   output$boxplots <- renderPlotly({
@@ -142,11 +147,11 @@ server <- function(input, output, session) {
     # Create plot
     p <- plot_ly(data_plot(), x = ~name, y = ~return, color = ~combination_frequency, type = "box",
                  hoverinfo = "text",
-                 text = ~paste("Country: ", name, "<br>", "Date: ", date, "<br>", "Return: ", return, "%"), colors = palette) %>%
+                 text = ~paste("Country: ", name, "<br>", "Date: ", date, "<br>", "Growth Rate: ", return, "%"), colors = palette) %>%
       layout(title = "Stock Market Capitalization and GDP Growth Rates by Country",
              xaxis = list(title = "",
                           showgrid=FALSE),
-             yaxis = list(title = "Return",
+             yaxis = list(title = "Growth Rate",
                           showgrid=FALSE, tickformat = ".2%"))
     
     
@@ -160,7 +165,7 @@ server <- function(input, output, session) {
     # Create plot
     p <- plot_ly(data_plot(), x = ~return, color = ~combination_frequency, type = "histogram", colors = palette) %>%
       layout(title = "Histogram of Growth Rates by Country",
-             xaxis = list(title = "Return",
+             xaxis = list(title = "Growth Rate",
                           showgrid=FALSE, tickformat = ".2%"),
              yaxis = list(title = "Frequency",
                           showgrid=FALSE))
@@ -176,3 +181,7 @@ server <- function(input, output, session) {
 
 # Create Shiny object
 shinyApp(ui = ui, server = server)
+
+
+
+
