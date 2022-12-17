@@ -5,3 +5,5 @@
 data/raw/*
 data/processed/*
 */__py_cache__/*
+*/.Rhistory
+reports/*

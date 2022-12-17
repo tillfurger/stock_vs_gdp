@@ -57,11 +57,20 @@ data = pd.DataFrame()
 for c in countries:
     aux_d = data_all.loc[data_all.country == c, :]
     aux_d.sort_values("date", inplace=True)
-    aux_d["gdp_growth"] = aux_d.gdp.pct_change(1)
-    aux_d["stock_index_growth"] = aux_d.stock_index.pct_change(1)
-    aux_d["gdp_100"] = 100*np.exp(np.nan_to_num(aux_d["gdp_growth"].cumsum()))
-    aux_d["stock_index_100"] = 100*np.exp(np.nan_to_num(aux_d["stock_index_growth"].cumsum()))
+    aux_d["gdp_q_growth"] = aux_d.gdp.pct_change(1)
+    aux_d["stock_index_q_growth"] = aux_d.stock_index.pct_change(1)
+    aux_d["gdp_y_growth"] = aux_d.gdp.pct_change(4)
+    aux_d["stock_index_y_growth"] = aux_d.stock_index.pct_change(4)
+    aux_d["gdp_100"] = 100*np.exp(np.nan_to_num(aux_d["gdp_q_growth"].cumsum()))
+    aux_d["stock_index_100"] = 100*np.exp(np.nan_to_num(aux_d["stock_index_q_growth"].cumsum()))
     data = pd.concat([data, aux_d])
 
 data.set_index(["country", "date"], inplace=True)
 data.to_csv(f'{DATA_PATH}/processed/data_full_shiny.csv', index=True)
+
+# change to a long format to help visualizations in the shiny app
+data_long = data.melt(ignore_index=False, id_vars=["name", "region"],
+                      value_vars=["gdp", "stock_index", "gdp_q_growth",
+                                  "stock_index_q_growth", "gdp_y_growth",
+                                  "stock_index_y_growth", "gdp_100", "stock_index_100"])
+data_long.to_csv(f'{DATA_PATH}/processed/data_full_shiny_long.csv', index=True)
