@@ -70,7 +70,13 @@ Description of Steps
 Data 
 ------------
 
-Data is pulled from [Alpha Vantage]: www.alphavantage.co
+US GPD and SPY data is pulled from [Alpha Vantage](www.alphavantage.co)
+
+Income level data for multiple countries is obtained from the [World Bank API](https://datahelpdesk.worldbank.org/knowledgebase/articles/889392-about-the-indicators-api-documentation)
+
+GDP quarterly data for a sample of countries is obtained from the [FRED API](https://fred.stlouisfed.org/docs/api/fred/) using the [fredapi](https://github.com/mortada/fredapi) python package.
+
+Stock Indexes data is obtained from [Yahoo Finance](https://finance.yahoo.com) using the [yfinance](https://pypi.org/project/yfinance/) python package.
 
 Resources
 ------------
