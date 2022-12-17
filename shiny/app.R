@@ -143,7 +143,7 @@ server <- function(input, output, session) {
     p <- plot_ly(data_plot(), x = ~name, y = ~return, color = ~combination_frequency, type = "box",
                  hoverinfo = "text",
                  text = ~paste("Country: ", name, "<br>", "Date: ", date, "<br>", "Return: ", return, "%"), colors = palette) %>%
-      layout(title = "Stock Market and GDP Growth Rates by Country",
+      layout(title = "Stock Market Capitalization and GDP Growth Rates by Country",
              xaxis = list(title = "",
                           showgrid=FALSE),
              yaxis = list(title = "Return",
