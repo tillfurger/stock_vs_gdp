@@ -26,6 +26,20 @@ data_app <- subset(clean_data_global, clean_data_global$name=="United States"| c
 #create variable specifying if: absolute, quarterly, or yearly returns
 data_app$type <- ifelse(grepl("q_growth", data_app$variable), "Quarterly", ifelse(grepl("y_growth", data_app$variable), "Yearly", "Absolute"))
 
+#create variable specifying if: gdp or stock index
+data_app$series <- ifelse(grepl("gdp", data_app$variable), "GDP", ifelse(grepl("stock", data_app$variable), "Stock Index", "NA"))
+
+#create variable to specify combination of country selected and series
+data_app$combination <- paste(data_app$name, data_app$series)
+
+#create variable to specify combination of country, growth rate selected and series
+data_app$combination_frequency <- paste(data_app$combination, data_app$type)
+
+
+
+#create variable containing average return of each variable "combination_frequency"
+data_app <- data_app %>% group_by(combination_frequency) %>% mutate(ave_value = round(mean(return, na.rm = T),3))
+
 #keep only growth rates
 data_app <- subset(data_app, data_app$type !="Absolute")
 
@@ -52,10 +66,8 @@ ui <- fluidPage(theme = shinytheme("lumen"),
                     
                     # Select date range to be plotted
                     
-                    # start and end are always specified in yyyy-mm-dd
                     
-                    
-                    dateRangeInput("dates", #Daterange noch ändern!!
+                    dateRangeInput("dates", 
                                    label = strong("Select date range (yy/mm/dd)"),
                                    start = "2000-01-01",
                                    end = "2022-11-01",
@@ -74,9 +86,9 @@ ui <- fluidPage(theme = shinytheme("lumen"),
                   
                   # Output: Description, lineplot, and reference (main panel for displaying outputs)
                   mainPanel(
-                    checkboxGroupInput("country", label = strong("Select countries to plot"), 
+                    checkboxGroupInput("country", label = strong("Select countries to include"), 
                                        choices = unique(data_app$name),
-                                       selected = c("United States", "Mexico", "Indonesia")),
+                                       selected = c("United States", "Mexico", "Indonesia"), inline = T),
                     plotlyOutput(outputId = "p", height = "300px"),
                     textOutput(outputId = "desc"),
                   )
@@ -104,13 +116,13 @@ server <- function(input, output, session) {
   output$p <- renderPlotly({
     
     # Create plot
-    p <- plot_ly(data_plot(), x = ~date, y = ~return, color = ~name, type = "scatter", mode = "lines",
+    p <- plot_ly(data_plot(), x = ~date, y = ~return, color = ~combination, type = "scatter", mode = "lines",
                  line = list(width = 1.5),
                  hoverinfo = "text",
                  text = ~paste("Country: ", name, "<br>", "Date: ", date, "<br>", "Return: ", return, "%"), colors = palette)   %>%
-      add_trace(data = data_plot(), x = ~date, y = ~mean(return, na.rm=T), color = ~name, type = "scatter", mode = "lines",  line = list(dash = "dash"),
+      add_trace(data = data_plot(), x = ~date, y = ~ave_value, color = ~combination, type = "scatter", mode = "lines",  line = list(dash = "dash"),
                 hoverinfo = "text",
-                text = ~paste("Country: ", name, "<br>", "Avg. Return: ", mean(return, na.rm=T), "%")) %>%
+                text = ~paste("Country: ", name, "<br>", paste0("Avg. Return ", series, ": "), ave_value, "%")) %>%
       layout(title = "Stock Market Capitalization vs. GDP",
              xaxis = list(title = "Date",
                           showgrid=FALSE),
@@ -127,3 +139,4 @@ server <- function(input, output, session) {
 
 # Create Shiny object
 shinyApp(ui = ui, server = server)
+
