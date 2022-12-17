@@ -42,6 +42,7 @@ Project Organization
     │   └── rsconnect/shinyapp.io   <- Hosting app online
     │   └── app.R                   <- Interactive app
     │   └── helper.R                <- Helper function
+    |   └── shiny_data              <- data pre-processed for shiny app
     │
     │
     │
