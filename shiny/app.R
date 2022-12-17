@@ -5,6 +5,7 @@ library(dplyr)
 library(readr)
 library(plotly)
 library(tidyverse)
+library(RColorBrewer)
 #in order to publish
 library(packrat)
 library(rsconnect)
@@ -13,6 +14,8 @@ library(rsconnect)
 # Load data 
 clean_data_global <- read_csv("../data/processed/data_full_shiny_long.csv")
 
+#create colorblindriendly color palette --> check with colorblindly
+palette <- colorRampPalette(brewer.pal(n = 9, name = "RdBu"))(6)
 
 #round values to be nicely displayed in plotly tooltip
 clean_data_global$value <- round(clean_data_global$value,3)
@@ -53,7 +56,7 @@ ui <- fluidPage(theme = shinytheme("lumen"),
                     
                     
                     dateRangeInput("dates", #Daterange noch ändern!!
-                                   label = "Date range:",
+                                   label = strong("Select date range (yy/mm/dd)"),
                                    start = "2000-01-01",
                                    end = "2022-11-01",
                                    min = "2000-01-01",
@@ -71,7 +74,7 @@ ui <- fluidPage(theme = shinytheme("lumen"),
                   
                   # Output: Description, lineplot, and reference (main panel for displaying outputs)
                   mainPanel(
-                    checkboxGroupInput("country", label = ("Select countries to plot"), 
+                    checkboxGroupInput("country", label = strong("Select countries to plot"), 
                                        choices = unique(data_app$name),
                                        selected = c("United States", "Mexico", "Indonesia")),
                     plotlyOutput(outputId = "p", height = "300px"),
@@ -104,7 +107,7 @@ server <- function(input, output, session) {
     p <- plot_ly(data_plot(), x = ~date, y = ~return, color = ~name, type = "scatter", mode = "lines",
                  line = list(width = 1.5),
                  hoverinfo = "text",
-                 text = ~paste("Country: ", name, "<br>", "Date: ", date, "<br>", "Return: ", return, "%"))   %>%
+                 text = ~paste("Country: ", name, "<br>", "Date: ", date, "<br>", "Return: ", return, "%"), colors = palette)   %>%
       add_trace(data = data_plot(), x = ~date, y = ~mean(return, na.rm=T), color = ~name, type = "scatter", mode = "lines",  line = list(dash = "dash"),
                 hoverinfo = "text",
                 text = ~paste("Country: ", name, "<br>", "Avg. Return: ", mean(return, na.rm=T), "%")) %>%
