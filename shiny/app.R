@@ -18,7 +18,7 @@ clean_data_global <- read_csv("../data/processed/data_full_shiny_long.csv")
 clean_data_global$value <- round(clean_data_global$value,3)
 
 #first try with three countries (low-middle- + high-income country)
-data_app <- subset(clean_data_global, clean_data_global$name=="United States"| clean_data_global$name=="Mexico"|clean_data_global$name=="Indonesia")
+data_app <- subset(clean_data_global, clean_data_global$name=="United States"| clean_data_global$name=="Mexico"| clean_data_global$name=="Japan")
 
 #create variable specifying if: absolute, quarterly, or yearly returns
 data_app$type <- ifelse(grepl("q_growth", data_app$variable), "Quarterly", ifelse(grepl("y_growth", data_app$variable), "Yearly", "Absolute"))
@@ -31,7 +31,6 @@ data_app <- subset(data_app, data_app$type !="Absolute")
 data_app$return <- data_app$value
 
 #reorder stock data
-#clean_stock_data_spy500<- clean_stock_data_spy500[order(as.Date(clean_stock_data_spy500$date, format="%Y/%m/%d")),]
 
 
 # Define UI
@@ -72,10 +71,9 @@ ui <- fluidPage(theme = shinytheme("lumen"),
                   
                   # Output: Description, lineplot, and reference (main panel for displaying outputs)
                   mainPanel(
-                    
-                    checkboxInput("smooth", label = ("United States"), value = TRUE),
-                    checkboxInput("smooth", label = ("Mexico"), value = TRUE),
-                    checkboxInput("smooth", label = ("Indonesia"), value = TRUE),
+                    checkboxGroupInput("country", label = ("Select countries to plot"), 
+                                       choices = unique(data_app$name),
+                                       selected = c("United States", "Mexico", "Indonesia")),
                     plotlyOutput(outputId = "p", height = "300px"),
                     textOutput(outputId = "desc"),
                   )
@@ -85,56 +83,36 @@ ui <- fluidPage(theme = shinytheme("lumen"),
 
 
 # Define server function
-server <- function(input, output, session) { #do i have to add "session"??
+server <- function(input, output, session) { 
   
-  # Subset data GDP
-  selected_data <- reactive({
+  # Create reactive dataframe
+  data_plot <- reactive({
+    
+    # Filter data based on user input
     data_app %>%
-      filter(type == input$Interval,
-             date >= input$dates[1],
-             date <= input$dates[2]
-      )
+      filter(type == input$Interval) %>%
+      filter(date >= input$dates[1] & date <= input$dates[2]) %>%
+      filter(name %in% input$country)
+    
   })
   
   
-  
-  #Checkbox
-  # output$p <- renderPlotly({
-  #   if(input$smooth) {
-  #     h1("Output is shown") #hier muss dann der plot rein
-  #   } else {
-  #     h1("Output is hidden")
-  #   }}) #render plotly now?? Should I work with "switch"? Need several loops and diff names bc 3 different checkboxes! 
-  # #need different logic too -> filter 
-  # 
-  # #Use input from dropdown menu 'region'
-  # selected_region <-  clean_data_global %>%
-  #   filter(region == input$region)
-  # 
-  # #output$region_plot <- renderPlotly({
-  # #data <- data[data$region == input$region,]
-  # #data
-  # #})
-  # 
-  # #Wann muss man das renderPlotly machen, erst ganz am Schluss? Zeugs ist ja gar nicht interaktiv..
-  # 
-  
-  # Create scatterplot object the plotOutput function is expecting
-  output$p <- renderPlotly({ #hier muss dann der plot rein
+  # Create output
+  output$p <- renderPlotly({
     
     # Create plot
-    p <- plot_ly(selected_data(), x = ~date, y = ~return, type = "scatter", mode = "lines", color = I("#0072B2"), name = "GDP") %>%
-      add_trace(data = selected_data(), x = ~date, y = ~return, type = "scatter", mode = "lines", color = I("#D55E00"), name = "SPY") %>%
-      add_trace(data = selected_data(), x = ~date, y = ~mean(return, na.rm=T), type = "scatter", mode = "lines", color = I("#0072B2"), name = "Mean GDP Return", line = list(dash = "dash")) %>%
-      add_trace(data = selected_data(), x = ~date, y = ~mean(return, na.rm=T), type = "scatter", mode = "lines", color = I("#D55E00"), name = "Mean SPY Return", line = list(dash = "dash")) %>%
+    p <- plot_ly(data_plot(), x = ~date, y = ~return, color = ~name, type = "scatter", mode = "lines",
+                 line = list(width = 1.5),
+                 hoverinfo = "text",
+                 text = ~paste("Country: ", name, "<br>", "Date: ", date, "<br>", "Return: ", return, "%"))   %>%
+      add_trace(data = data_plot(), x = ~date, y = ~mean(return, na.rm=T), color = ~name, type = "scatter", mode = "lines",  line = list(dash = "dash"),
+                hoverinfo = "text",
+                text = ~paste("Country: ", name, "<br>", "Avg. Return: ", mean(return, na.rm=T), "%")) %>%
       layout(title = "Stock Market Capitalization vs. GDP",
              xaxis = list(title = "Date",
                           showgrid=FALSE),
-             yaxis = list(title = "Return", tickformat = ".2%", 
-                          showgrid=FALSE)) %>%
-      layout(hoverlabel = list(bgcolor = "white", bordercolor = "grey", font = list(color = "black")),
-             plot_bgcolor = I("white"),
-             paper_bgcolor = I("white"))
+             yaxis = list(title = "Return",
+                          showgrid=FALSE, tickformat = ".2%"))
     
     # Return plot
     p
