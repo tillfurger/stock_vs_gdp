@@ -8,7 +8,7 @@ In this project, we are examining whether the stock market capitalization grows 
 
 For our research, we use data from Alpha Vantage for the United States and provide an analysis of the data through graphs and tables. We also give a short interpretation of our findings.
 
-In a second step, we are comparing our analysis to the situation in emerging markets in order to get insights about the situation in middle and low income countries and to bring forth potential similarities and differences. In order to visualize these effectively, we have developed an interactive app where each user can undertake robustness checks on his own. We have considered visualisation principles for our graphs and apps and designed them in a colorblind-friendly manner.
+In a second step, we are comparing our analysis to the situation in emerging markets in order to get insights about the situation in middle and low income countries and to bring forth potential similarities and differences. In order to visualize these effectively, we have developed an [interactive app] https://flurinaschneider.shinyapps.io/DTFF22/ where each user can undertake robustness checks on his own. We have considered visualisation principles for our graphs and apps and designed them in a colorblind-friendly manner.
 
 Finally, we also compare our research to the findings of selected studies and papers in the field. 
 
