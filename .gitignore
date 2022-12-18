@@ -2,8 +2,12 @@
 */.DS_Store
 .ipynb_checkpoints
 */.ipynb_checkpoints/*
-data/raw/*
-data/processed/*
+data/raw/*.csv
+data/raw/*.json
+data/processed/*.csv
+!data/catalogues/CountriesCatalogues.xlsx
 */__py_cache__/*
 */.Rhistory
-reports/*
+*/.RData
+reports/figures/*.svg
+reports/tables/*.tex
