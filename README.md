@@ -8,9 +8,11 @@ In this project, we are examining whether the stock market capitalization grows 
 
 For our research, we use data from Alpha Vantage for the United States and provide an analysis of the data through graphs and tables. We also give a short interpretation of our findings.
 
-In a second step, we are comparing our analysis to the situation in emerging markets in order to get insights about the situation in middle and low income countries and to bring forth potential similarities and differences. In order to visualize these effectively, we have developed an [interactive app] https://flurinaschneider.shinyapps.io/DTFF22/ where each user can undertake robustness checks on his own. We have considered visualisation principles for our graphs and apps and designed them in a colorblind-friendly manner.
+In a second step, we are comparing our analysis to the situation in Indonesia and Mexico in order to get insights about the situation in upper middle and lower middle income countries and to bring forth potential similarities and differences. In order to visualize these effectively, we have developed an [interactive app] https://flurinaschneider.shinyapps.io/DTFF22/ where each user can undertake robustness checks on his own. We have considered visualisation principles for our graphs and apps and designed them in a colorblind-friendly manner.
 
 Finally, we also compare our research to the findings of selected studies and papers in the field. 
+
+FINDINGS: TBD
 
 
 Project Organization
@@ -61,7 +63,7 @@ Description of Steps
 
 - Connect Overleaf to Github
 
-- Use R Shiny and Plotly to create interactive graphs in order to do robustness checks (date range, frequency, type of country)
+- Use R Shiny and Plotly to create interactive graphs in order to do robustness checks (date range, frequency, different countries)
 
 - Analysis and interpretation of findings
 
@@ -80,16 +82,18 @@ Stock Indexes data is obtained from [Yahoo Finance](https://finance.yahoo.com) u
 
 Resources
 ------------
+Aali-Bujari, Ali, Francisco Venegas-Mart ́ınez, and Gilberto P ́erez-Lechuga (Dec. 2017). “Impact of the stock market capitalization and the banking spread in growth and development in Latin American: A panel data estimation with System GMM”. en. In: Contadur ́ıa y Administraci ́on 62(5), pp. 1427–1441. issn: 0186-1042. doi: 10.1016/j.cya.2017.09.005. 
 
-Alajekwu Udoka Bernard and Achugbu Austin (2011); “The Role of Stock Market Development on Economic Growth in Nigeria: A Time Series Analysis,” African Research Review Vol. 5 (6), Serial No. 23, November.
+Kuvshinov, Dmitry and Kaspar Zimmermann (Aug. 2022). “The big bang: Stock market capitalization in the long run”. en. In: Journal of Financial Economics 145(2, Part B), pp. 527–552. issn: 0304-405X. doi: 10 .1016 / j .jfineco .2021 .09 .008. 
 
-Beware the Bubble? The US Stock Market Cap-to-GDP Ratio, [CFA Institute]: https://blogs.cfainstitute.org/investor/2021/02/02/beware-the-bubble-the-us-stock-market-cap-to-gdp-ratio/
+Prats, Mar ́ıa A. and Beatriz Sandoval (Dec. 2020). “Does stock market capitalization cause GDP? A causality study for Central and Eastern European countries”. en. In: Economics 14(1). Publisher: De Gruyter Open Access. issn: 1864-6042. doi: 10 .5018 / economics
+-ejournal .ja .2020 -17. 
+
+Market Cap to GDP Ratio (The Buffett Indicator), [Corporate Finance Institute]: https://corporatefinanceinstitute.com/resources/valuation/market-cap-to-gdp-buffett-indicator/![image](https://user-images.githubusercontent.com/53712031/206927198-af7a423d-d89f-4eda-9eb2-92817d75a8fd.png)
 
 Why economic growth has been a mirage for emerging market investors, [Schroders]: https://www.schroders.com/en/ch/wealth-management/insights/markte/why-economic-growth-has-been-a-mirage-for-emerging-market-investors/
 
-Market Cap to GDP Ratio (the Buffett Indicator), [Corporate Finance Institute]: https://corporatefinanceinstitute.com/resources/valuation/market-cap-to-gdp-buffett-indicator/![image](https://user-images.githubusercontent.com/53712031/206927198-af7a423d-d89f-4eda-9eb2-92817d75a8fd.png)
 
-Market Capitalization of Listed Domestic Companies (% of GDP), [World Bank]: https://data.worldbank.org/indicator/CM.MKT.LCAP.GD.ZS
 
 Contributors
 ------------
