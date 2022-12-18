@@ -6,14 +6,11 @@ Intro
 
 In this project, we are examining whether the stock market capitalization grows faster than the GDP, with a focus on developed countries, namely the United States. The ratio between a country's market capitalization and its GDP is also called the "Buffet indicator" and is often used to get an insight if the stock market is undervalued or overvalued. 
 
-For our research, we use data from Alpha Vantage for the United States and provide an analysis of the data through graphs and tables. We also give a short interpretation of our findings.
+For our research, we use data from Alpha Vantage for the United States and provide an analysis of the data through graphs and tables. We also give a short interpretation of our findings. In a second step, we are comparing our analysis to the situation in Indonesia and Mexico in order to get insights about the situation in upper middle and lower middle income countries and to bring forth potential similarities and differences. In order to visualize these effectively, we have developed an [interactive app](https://flurinaschneider.shinyapps.io/DTFF22/) where each user can undertake robustness checks on his own. We have considered visualisation principles for our graphs and apps and designed them in a colorblind-friendly manner.
 
-In a second step, we are comparing our analysis to the situation in Indonesia and Mexico in order to get insights about the situation in upper middle and lower middle income countries and to bring forth potential similarities and differences. In order to visualize these effectively, we have developed an [interactive app] https://flurinaschneider.shinyapps.io/DTFF22/ where each user can undertake robustness checks on his own. We have considered visualisation principles for our graphs and apps and designed them in a colorblind-friendly manner.
+We find that between 2000 and 2022, there is a positive correlation if we regress the SPY on the US GDP. The average US GDP growth rate lies below the average growth rate of the SPY. The median growth rate of the US GDP is lower than the median growth rate of the stock market capitalization as well. The volatility of the SPY growth is larger. For the same time period, both Indonesia's mean stock index growth rate and GDP growth rate exceed the respective ones of the United States. Mexico's mean GDP rate is below the US mean GDP rate, its mean stock index growth rate above the one of the USA. 
 
-Finally, we also compare our research to the findings of selected studies and papers in the field. 
-
-FINDINGS: TBD
-
+Comparing our research to the findings of selected papers in the field, we can see...
 
 Project Organization
 ------------
@@ -62,6 +59,8 @@ Description of Steps
 - Generation of tables which can be directly imported to Latex 
 
 - Connect Overleaf to Github
+
+- Use Docker to ensure reproducibility by packaging and sharing environments in a consistent manner
 
 - Use R Shiny and Plotly to create interactive graphs in order to do robustness checks (date range, frequency, different countries)
 
