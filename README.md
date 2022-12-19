@@ -63,7 +63,7 @@ Description of Steps
 
 - Use R Shiny and Plotly to create interactive graphs in order to do robustness checks (date range, frequency, different countries)
 
-- Making Shiny app reproducible by adding a Dockerfile
+- Ensure reproducibility by adding Dockerfiles 
 
 - Analysis and interpretation of findings
 
