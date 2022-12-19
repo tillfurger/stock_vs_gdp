@@ -82,21 +82,17 @@ Stock indices data is obtained from [Yahoo Finance](https://finance.yahoo.com) u
 
 Resources
 ------------
-Aali-Bujari, Ali, Francisco Venegas-Mart ́ınez, and Gilberto P ́erez-Lechuga (Dec. 2017). “Impact of the stock market capitalization and the banking spread in growth and development in Latin American: A panel data estimation with System GMM”. en. In: Contadur ́ıa y Administraci ́on 62(5), pp. 1427–1441. issn: 0186-1042. doi: 10.1016/j.cya.2017.09.005. 
+Aali-Bujari, Ali, Francisco Venegas-Mart ́ınez, and Gilberto P ́erez-Lechuga (Dec. 2017). “Impact of the stock market capitalization and the banking spread in growth and development in Latin American: A panel data estimation with System GMM”. In: Contaduria y Administracion 62(5), pp. 1427–1441. issn: 0186-1042. doi: 10.1016/j.cya.2017.09.005. 
 
-Corporate Finance Institute (Dec. 2022). Market Cap to GDP Ratio (the Buffett Indicator). 
-url: https://corporatefinanceinstitute.com/resources/valuation/market-cap-to-gdp-buffett-indicator/.
+Corporate Finance Institute (Dec. 2022). Market Cap to GDP Ratio (the Buffett Indicator).https://corporatefinanceinstitute.com/resources/valuation/market-cap-to-gdp-buffett-indicator/
 
-How the Stock Market Affects GDP (2022). en. url: https://www.investopedia.com/ask/
-answers/033015/how -does -stock -market -affect -gross -domestic -product -gdp .asp
+How the Stock Market Affects GDP (2022).https://www.investopedia.com/ask/answers/033015/how-does-stock-market-affect-gross-domestic-product-gdp.asp
 
-Inc. MSCI (May 2010). Is There a Link between GDP Growth and Equity Returns? en. SSRN
-Scholarly Paper. Rochester, NY. doi: 10.2139/ssrn.1707483. url: https://papers.ssrn.com/abstract=1707483 
+Inc. MSCI (May 2010). Is There a Link between GDP Growth and Equity Returns? SSRN Scholarly Paper. Rochester, NY. doi: 10.2139/ssrn.1707483.
 
-Kuvshinov, Dmitry and Kaspar Zimmermann (Aug. 2022). “The big bang: Stock market capitalization in the long run”. en. In: Journal of Financial Economics 145(2, Part B), pp. 527–552. issn: 0304-405X. doi: 10 .1016 / j .jfineco .2021 .09 .008. 
+Kuvshinov, Dmitry and Kaspar Zimmermann (Aug. 2022). “The big bang: Stock market capitalization in the long run”. In: Journal of Financial Economics 145(2, Part B), pp. 527–552. issn: 0304-405X. doi: 10 .1016 / j .jfineco .2021 .09 .008. 
 
-Prats, Maria A. and Beatriz Sandoval (Dec. 2020). “Does stock market capitalization cause GDP? A causality study for Central and Eastern European countries”. en. In: Economics 14(1). Publisher: De Gruyter Open Access. issn: 1864-6042. doi: 10 .5018 / economics
--ejournal .ja .2020 -17. 
+Prats, Maria A. and Beatriz Sandoval (Dec. 2020). “Does stock market capitalization cause GDP? A causality study for Central and Eastern European countries”. en. In: Economics 14(1). Publisher: De Gruyter Open Access. issn: 1864-6042. doi: 10 .5018 / economics-ejournal .ja .2020 -17. 
 
 Contributors
 ------------
