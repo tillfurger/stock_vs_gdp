@@ -61,8 +61,6 @@ Description of Steps
 
 - Connect Overleaf to Github
 
-- Use Docker to ensure reproducibility by packaging and sharing environments in a consistent manner
-
 - Use R Shiny and Plotly to create interactive graphs in order to do robustness checks (date range, frequency, different countries)
 
 - Analysis and interpretation of findings
