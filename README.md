@@ -59,7 +59,7 @@ Description of Steps
 
 - Generation of tables which can be directly imported to Latex 
 
-- Connect Overleaf to Github (all Overleaf Files can be directly accessed [here](https://www.overleaf.com/7537555654mtpkfdhpvwcf)
+- Connect Overleaf to Github (all Overleaf Files can be directly accessed [here](https://www.overleaf.com/7537555654mtpkfdhpvwcf))
 
 - Use R Shiny and Plotly to create interactive graphs in order to do robustness checks (date range, frequency, different countries)
 
